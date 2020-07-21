@@ -13,6 +13,9 @@ import java.sql.SQLException;
 public final class DBConnectionUtils {
 	private static DBConnectionUtils instance;
 	private static Connection connection;
+	private static final String DATABASE_URL = "jdbc:postgresql://localhost:5432/postgres";
+	private static final String DATABASE_USER = "postgres";
+	private static final String DATABASE_USER_PASSWORD = "1234";
 
 	private DBConnectionUtils() {
 		try {
@@ -22,7 +25,7 @@ public final class DBConnectionUtils {
 		}
 		ScriptRunner scriptRunner = new ScriptRunner(connection);
 		try {
-			scriptRunner.runScript(new FileReader("src\\main\\resources\\schema1.sql"));
+			scriptRunner.runScript(new FileReader("src\\main\\resources\\schema.sql"));
 			LogManager.getLogger().log(Level.DEBUG, "Init schema was created");
 			scriptRunner.runScript(new FileReader("src\\main\\resources\\test-data.sql"));
 			LogManager.getLogger().log(Level.DEBUG, "Test data were added");
