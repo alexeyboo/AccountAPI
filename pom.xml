@@ -13,6 +13,7 @@
 		<org.mybatis.version>3.5.5</org.mybatis.version>
 		<junit.version>4.13</junit.version>
 		<org.mockito.version>1.10.19</org.mockito.version>
+		<log4g.version>2.13.3</log4g.version>
 	</properties>
 
 	<dependencies>
@@ -37,6 +38,16 @@
 			<artifactId>mockito-all</artifactId>
 			<version>${org.mockito.version}</version>
 			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.logging.log4j</groupId>
+			<artifactId>log4j-api</artifactId>
+			<version>${log4g.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.logging.log4j</groupId>
+			<artifactId>log4j-core</artifactId>
+			<version>${log4g.version}</version>
 		</dependency>
 	</dependencies>
 

@@ -6,30 +6,30 @@ import org.junit.Before;
 import org.junit.Test;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
-import repo.AccountRepo;
+import repo.AccountRepoImpl;
 
 import static org.mockito.Mockito.when;
 
-public class AccountServiceTest {
+public class AccountLastNameServiceTest {
 
-	private AccountService accountService;
+	private AccountLastNameService accountLastNameService;
 
 	@Mock
-	private AccountRepo accountRepo;
+	private AccountRepoImpl accountRepoImpl;
 
 	@Before
 	public void setUp() {
 		MockitoAnnotations.initMocks(this);
-		accountService = new AccountService(accountRepo);
+		accountLastNameService = new AccountLastNameService(accountRepoImpl);
 	}
 
 	@Test
 	public void findById() {
 		Account before = new Account("login", "Dmitry", "Vavilov");
 
-		when(accountRepo.findById("login")).thenReturn(before);
+		when(accountRepoImpl.findById("login")).thenReturn(before);
 
-		Account after = accountService.findById("login");
+		Account after = accountLastNameService.findById("login");
 
 		Assert.assertEquals(before, after);
 	}
@@ -39,9 +39,9 @@ public class AccountServiceTest {
 		Account before = new Account("login", "Dmitry", "Vavilov");
 
 //		when(accountRepo.update(before)).thenReturn(before);
-		when(accountRepo.findById(before.getId())).thenReturn(before);
+		when(accountRepoImpl.findById(before.getId())).thenReturn(before);
 
-		Account after = accountService.updateLastName(before);
+		Account after = accountLastNameService.updateLastName(before);
 
 		Assert.assertEquals(before.getLastName(), after.getLastName());
 	}

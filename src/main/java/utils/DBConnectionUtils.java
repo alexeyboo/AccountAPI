@@ -1,6 +1,8 @@
 package utils;
 
 import org.apache.ibatis.jdbc.ScriptRunner;
+import org.apache.logging.log4j.Level;
+import org.apache.logging.log4j.LogManager;
 
 import java.io.FileNotFoundException;
 import java.io.FileReader;
@@ -16,14 +18,16 @@ public final class DBConnectionUtils {
 		try {
 			connection = DriverManager.getConnection("jdbc:postgresql://localhost:5432/postgres", "postgres", "1234");
 		} catch (SQLException e) {
-			e.printStackTrace();
+			LogManager.getLogger().log(Level.ERROR, "Couldn't establish the connection to database");
 		}
 		ScriptRunner scriptRunner = new ScriptRunner(connection);
 		try {
-			scriptRunner.runScript(new FileReader("src\\main\\resources\\schema.sql"));
+			scriptRunner.runScript(new FileReader("src\\main\\resources\\schema1.sql"));
+			LogManager.getLogger().log(Level.DEBUG, "Init schema was created");
 			scriptRunner.runScript(new FileReader("src\\main\\resources\\test-data.sql"));
+			LogManager.getLogger().log(Level.DEBUG, "Test data were added");
 		} catch (FileNotFoundException e) {
-			e.printStackTrace();
+			LogManager.getLogger().log(Level.ERROR, "Couldn't find SQL initialization files");
 		}
 	}
 
@@ -35,6 +39,7 @@ public final class DBConnectionUtils {
 				}
 			}
 		}
+
 		return connection;
 	}
 }

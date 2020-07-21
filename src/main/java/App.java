@@ -1,18 +1,18 @@
 import domain.Account;
-import repo.AccountRepo;
-import service.AccountService;
+import repo.AccountRepoImpl;
+import service.AccountLastNameService;
 
 import java.io.IOException;
 
 public class App {
 	public static void main(String[] args) throws IOException {
-		AccountService accountService = new AccountService(new AccountRepo());
+		AccountLastNameService accountLastNameService = new AccountLastNameService(new AccountRepoImpl());
 
-		Account otherlogin = accountService.findById("somelogin");
+		Account otherlogin = accountLastNameService.findById("somelogin");
 		System.out.println("first entry: " +  otherlogin);
 
-		accountService.updateLastName(new Account("otherlogin", "firstName", "Sidorov"));
-		Account somelogin = accountService.findById("otherlogin");
+		accountLastNameService.updateLastName(new Account("otherlogin", "firstName", "Sidorov"));
+		Account somelogin = accountLastNameService.findById("otherlogin");
 		System.out.println("updated second entry: " + somelogin);
 	}
 }
