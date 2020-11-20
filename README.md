@@ -2,7 +2,7 @@
 
 Simple Java API for *get* and *update* Account from database.
 
-PostgreSQL is need to be installed and *postgres* database is need to be started on url:<br>
+PostgreSQL is needed to be installed and *postgres* database is need to be started on url:<br>
 >jdbc:postgresql://localhost:5432/postgres
 
 by user:
